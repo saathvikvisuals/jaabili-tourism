@@ -1,0 +1,248 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover-border: hsl(var(--popover-border));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-border: var(--primary-border);
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-border: var(--secondary-border);
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted-border: var(--muted-border);
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-border: var(--accent-border);
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-destructive-border: var(--destructive-border);
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+  --font-mono: var(--app-font-mono);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root, .dark {
+  --button-outline: rgba(255,255,255, .10);
+  --badge-outline: rgba(255,255,255, .05);
+  --opaque-button-border-intensity: 9;
+  --elevate-1: rgba(255,255,255, .04);
+  --elevate-2: rgba(255,255,255, .09);
+  --background: 222 30% 6%;
+  --foreground: 0 0% 100%;
+  --border: 38 52% 40% / 0.2;
+  --card: 222 26% 9%;
+  --card-foreground: 0 0% 100%;
+  --card-border: 38 52% 40% / 0.2;
+  --popover: 222 26% 9%;
+  --popover-foreground: 0 0% 100%;
+  --popover-border: 38 52% 40% / 0.2;
+  --primary: 38 52% 51%;
+  --primary-foreground: 222 30% 6%;
+  --secondary: 222 26% 15%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 222 26% 15%;
+  --muted-foreground: 0 0% 70%;
+  --accent: 38 52% 51%;
+  --accent-foreground: 222 30% 6%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --input: 38 52% 40% / 0.3;
+  --ring: 38 52% 51%;
+  --sidebar: 222 30% 6%;
+  --sidebar-foreground: 0 0% 100%;
+  --sidebar-border: 38 52% 40% / 0.2;
+  --sidebar-primary: 38 52% 51%;
+  --sidebar-primary-foreground: 222 30% 6%;
+  --sidebar-accent: 222 26% 15%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-ring: 38 52% 51%;
+  --chart-1: 38 52% 51%;
+  --chart-2: 200 40% 50%;
+  --chart-3: 150 40% 50%;
+  --chart-4: 100 40% 50%;
+  --chart-5: 50 40% 50%;
+  --app-font-sans: 'Space Grotesk', sans-serif;
+  --app-font-serif: 'Plus Jakarta Sans', sans-serif;
+  --app-font-mono: monospace;
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { scroll-behavior: auto; }
+  body {
+    @apply font-serif antialiased bg-background text-foreground cursor-none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4, h5, h6 { @apply font-sans tracking-tight; }
+  ::selection { background: rgba(196,147,63,0.3); color: #fff; }
+}
+
+/* ── Glitch ─────────────────────────────── */
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+.glitch::before {
+  animation: glitch-1 5s infinite;
+  color: #C4933F;
+  clip-path: polygon(0 0, 100% 0, 100% 38%, 0 38%);
+  transform: translate(-0.04em, -0.05em);
+}
+.glitch::after {
+  animation: glitch-2 5s infinite;
+  color: #fff;
+  clip-path: polygon(0 62%, 100% 62%, 100% 100%, 0 100%);
+  transform: translate(0.04em, 0.04em);
+}
+@keyframes glitch-1 {
+  0%,89%,95%,100% { transform: translate(-0.04em,-0.05em); opacity:1; }
+  90% { transform: translate(0.14em,0.02em); opacity:0.9; clip-path: polygon(0 20%, 100% 20%, 100% 45%, 0 45%); }
+  92% { transform: translate(-0.12em,-0.1em); opacity:0.85; }
+  93% { transform: translate(0.08em,0.06em); opacity:0.9; clip-path: polygon(0 0, 100% 0, 100% 38%, 0 38%); }
+  94% { transform: translate(-0.04em,-0.05em); opacity:1; }
+}
+@keyframes glitch-2 {
+  0%,87%,94%,100% { transform: translate(0.04em,0.04em); opacity:1; }
+  88% { transform: translate(-0.1em,0.12em); opacity:0.85; clip-path: polygon(0 55%, 100% 55%, 100% 80%, 0 80%); }
+  90% { transform: translate(0.12em,-0.08em); opacity:0.9; }
+  92% { transform: translate(-0.06em,0.05em); opacity:0.85; clip-path: polygon(0 62%, 100% 62%, 100% 100%, 0 100%); }
+  93% { transform: translate(0.04em,0.04em); opacity:1; }
+}
+
+/* ── Marquee ────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+  will-change: transform;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* ── Clip reveal ────────────────────────── */
+@keyframes reveal-up {
+  from { transform: translateY(105%); }
+  to   { transform: translateY(0); }
+}
+.reveal-line {
+  display: block;
+  overflow: hidden;
+}
+.reveal-line > span {
+  display: block;
+  animation: reveal-up 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+  animation-play-state: paused;
+}
+.reveal-line.in-view > span { animation-play-state: running; }
+
+/* ── Horizon rule ────────────────────────── */
+.gold-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #C4933F 30%, #C4933F 70%, transparent 100%);
+}
+
+/* ── 3D card ─────────────────────────────── */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.23,1,0.32,1);
+}
+
+/* ── Noise overlay ───────────────────────── */
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+/* ── Float animation ────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+.float-anim { animation: float 6s ease-in-out infinite; }
+
+/* ── Scroll indicator pulse ─────────────── */
+@keyframes scroll-pulse {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50%       { opacity: 0.3; transform: scaleY(0.4); }
+}
+
+/* ── Mobile typography ──────────────────── */
+@media (max-width: 640px) {
+  body { cursor: auto; }
+  .hero-title { font-size: clamp(2.6rem, 13vw, 4.2rem); }
+  .section-title { font-size: clamp(2rem, 9vw, 3rem); }
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+  .container {
+    width: 100%;
+  }
+}
+
+.immersive-stage {
+  transform-style: preserve-3d;
+  perspective: 1100px;
+}
+
+.ar-grid {
+  background-image:
+    linear-gradient(rgba(196,147,63,0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196,147,63,0.18) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse at center, black 0%, black 44%, transparent 72%);
+  animation: ar-grid-shift 10s linear infinite;
+  opacity: 0.72;
+}
+
+@keyframes ar-grid-shift {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 44px 44px, 44px 44px; }
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
